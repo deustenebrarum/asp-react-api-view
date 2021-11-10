@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap'
 export default function RegistrationForm() {
     return (
         <Form>
+            <h2>Register</h2>
             <Form.Group className="mb-2" controlId="formBasicEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" placeholder="Enter email"/>

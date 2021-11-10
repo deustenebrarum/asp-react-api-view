@@ -5,7 +5,7 @@ export default function ApiTokenGeneratorForm() {
     const [token] = useState("abcdfqq");
     return (
         <Form>
-            <h1>API Token</h1>
+            <h2>API Token</h2>
             <Form.Group className="mb-2" controlId="formBasicToken">
                 <Form.Label>Token</Form.Label>
                 <Form.Control disabled type="text" value={token}/>

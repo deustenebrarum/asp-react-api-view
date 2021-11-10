@@ -12,6 +12,9 @@ export default function NavBar() {
                     <li className="nav-item">
                         <NavLink className="nav-link" activeClassName="active" to="/">Home</NavLink>
                     </li>
+                    <li className="nav-item">
+                        <Nav.Link className="nav-link" href="/api/valutes/01.01.2021">API Example</Nav.Link>
+                    </li>
                 </Nav>
             </Navbar.Collapse>
             </Container>

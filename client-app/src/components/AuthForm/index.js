@@ -4,6 +4,7 @@ import './AuthForm.module.css'
 export default function AuthForm() {
     return (
         <Form>
+            <h2>Log In</h2>
             <Form.Group className="mb-2" controlId="formBasicEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" placeholder="Enter email"/>
