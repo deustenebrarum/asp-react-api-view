@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -45,6 +46,21 @@ namespace asp_react_api_view
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
+            app.Use(async (context, next) =>
+            {
+                await next();
+                var path = context.Request.Path.Value;
+
+                if (!path.StartsWith("/api") && !Path.HasExtension(path))
+                {
+                    context.Request.Path = "/index.html";
+                    await next();
+                }
             });
         }
     }
