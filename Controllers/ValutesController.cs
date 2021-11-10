@@ -37,12 +37,17 @@ namespace asp_react_api_view.Controllers
 
         [HttpGet]
         [Route("{date}")]
-        public IEnumerable<Valute> Get(string date)
+        public ActionResult<IEnumerable<Valute>> Get(string date)
         {
             string xml = getPage(Config.apiUri + $"?date_req={date.Replace('-', '/')}");
 
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xml);
+
+            if (!doc.DocumentElement.HasAttribute("Date"))
+            {
+                return NotFound();
+            }
 
             List<Valute> valutes = new List<Valute>();
 
