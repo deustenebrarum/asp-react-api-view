@@ -11,6 +11,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace asp_react_api_view.Controllers
 {
@@ -52,6 +53,9 @@ namespace asp_react_api_view.Controllers
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
 
                 var token = new JwtSecurityToken(
+                    issuer: _configuration["JWT:ValidIssuer"],
+                    audience: _configuration["JWT:ValidAudience"],
+                    expires: DateTime.Now.AddYears(1),
                     claims: authClaims,
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                     );
@@ -61,6 +65,14 @@ namespace asp_react_api_view.Controllers
                     token = new JwtSecurityTokenHandler().WriteToken(token)
                 });
             }
+            return Unauthorized();
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("generate-token")]
+        public async Task<IActionResult> GenerateToken()
+        {
             return Unauthorized();
         }
 

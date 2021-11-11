@@ -77,6 +77,7 @@ namespace asp_react_api_view
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
