@@ -18,6 +18,7 @@ namespace asp_react_api_view.Controllers
 
 
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class ValutesController : ControllerBase
     {
@@ -60,7 +61,7 @@ namespace asp_react_api_view.Controllers
                     CharCode = node.SelectSingleNode("CharCode").InnerText,
                     Nominal = node.SelectSingleNode("Nominal").InnerText,
                     Name = node.SelectSingleNode("Name").InnerText,
-                    Value = node.SelectSingleNode("Value").InnerText,
+                    Value = node.SelectSingleNode("Value").InnerText
                 });
             }
 
